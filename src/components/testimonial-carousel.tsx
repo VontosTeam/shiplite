@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
-import { ChevronLeft, ChevronRight, Star } from "lucide-react"
+import { Star } from "lucide-react"
 
 const testimonials = [
   {
@@ -40,12 +40,25 @@ export default function TestimonialCarousel() {
   const [current, setCurrent] = useState(0)
   const [autoplay, setAutoplay] = useState(true)
 
-  const next = () => {
-    setCurrent((current + 1) % testimonials.length)
-  }
+  // Create an extended array that includes the first testimonial at the end
+  const extendedTestimonials = [...testimonials, testimonials[0]]
 
-  const prev = () => {
-    setCurrent((current - 1 + testimonials.length) % testimonials.length)
+  const next = () => {
+    if (current === testimonials.length - 1) {
+      // When we reach the last original item, smoothly transition to the clone
+      setCurrent(current + 1)
+      // After the transition, instantly jump back to the first item without animation
+      setTimeout(() => {
+        document.querySelector('.testimonial-slider')?.classList.add('no-transition')
+        setCurrent(0)
+        // Re-enable transitions after jumping back
+        setTimeout(() => {
+          document.querySelector('.testimonial-slider')?.classList.remove('no-transition')
+        }, 50)
+      }, 500)
+    } else {
+      setCurrent(current + 1)
+    }
   }
 
   useEffect(() => {
@@ -60,12 +73,19 @@ export default function TestimonialCarousel() {
 
   return (
     <div className="relative max-w-4xl mx-auto">
+      <style jsx>{`
+        .no-transition {
+          transition: none !important;
+        }
+      `}</style>
       <div className="overflow-hidden">
         <div
-          className="flex transition-transform duration-500 ease-in-out"
+          className="testimonial-slider flex transition-transform duration-500 ease-in-out"
           style={{ transform: `translateX(-${current * 100}%)` }}
+          onMouseEnter={() => setAutoplay(false)}
+          onMouseLeave={() => setAutoplay(true)}
         >
-          {testimonials.map((testimonial, index) => (
+          {extendedTestimonials.map((testimonial, index) => (
             <div key={index} className="w-full flex-shrink-0 px-4">
               <Card className="border-none shadow-md">
                 <CardContent className="p-6">
@@ -97,33 +117,16 @@ export default function TestimonialCarousel() {
           ))}
         </div>
       </div>
-
-      <button
-        onClick={prev}
-        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 bg-white rounded-full p-2 shadow-md hover:bg-gray-100 focus:outline-none"
-        onMouseEnter={() => setAutoplay(false)}
-        onMouseLeave={() => setAutoplay(true)}
-        aria-label="Previous testimonial"
-      >
-        <ChevronLeft className="h-6 w-6 text-blue-600" />
-      </button>
-
-      <button
-        onClick={next}
-        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 bg-white rounded-full p-2 shadow-md hover:bg-gray-100 focus:outline-none"
-        onMouseEnter={() => setAutoplay(false)}
-        onMouseLeave={() => setAutoplay(true)}
-        aria-label="Next testimonial"
-      >
-        <ChevronRight className="h-6 w-6 text-blue-600" />
-      </button>
-
-      <div className="flex justify-center mt-4">
+      <div className="flex justify-center mt-4 gap-2">
         {testimonials.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrent(index)}
-            className={`mx-1 w-3 h-3 rounded-full ${current === index ? "bg-blue-600" : "bg-gray-300"}`}
+            className={`w-2.5 h-2.5 rounded-full transition-all ${
+              current === index
+                ? "bg-philippine-blue scale-125"
+                : "bg-gray-300 hover:bg-gray-400"
+            }`}
             aria-label={`Go to testimonial ${index + 1}`}
           />
         ))}
