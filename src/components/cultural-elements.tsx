@@ -1,11 +1,9 @@
-import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import Image from "next/image"
 import { useLanguage } from "@/contexts/language-context"
 
 export function PhilippineCulturalElement() {
   const { t } = useLanguage()
-  const [currentImageIndex, setCurrentImageIndex] = useState(0)
   
   const images = [
     { src: "/christmas-celebrations.jpg", alt: "Filipino celebration", title: "Christmas Celebrations" },
@@ -37,33 +35,22 @@ export function PhilippineCulturalElement() {
           <div className="md:w-1/2">
             <div className="grid grid-cols-2 gap-4">
               {images.map((image, index) => (
-                <Card key={index} className={`card-hover transition-opacity duration-300 ${currentImageIndex === index ? 'opacity-100' : 'opacity-70'}`}>
+                <Card key={index}>
                   <CardContent className="p-4">
                     <div className="aspect-square relative mb-2">
                       <Image
                         src={image.src}
                         alt={image.alt}
                         fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        priority={index === 0}
+                        quality={85}
                         className="object-cover rounded"
                       />
                     </div>
                     <p className="text-sm text-center font-medium">{image.title}</p>
                   </CardContent>
                 </Card>
-              ))}
-            </div>
-            <div className="flex justify-center mt-4 gap-2">
-              {images.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentImageIndex(index)}
-                  className={`w-2.5 h-2.5 rounded-full transition-all ${
-                    index === currentImageIndex
-                      ? "bg-philippine-blue scale-125"
-                      : "bg-gray-300 hover:bg-gray-400"
-                  }`}
-                  aria-label={`View image ${index + 1}`}
-                />
               ))}
             </div>
           </div>
