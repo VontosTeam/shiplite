@@ -91,38 +91,7 @@ export default function LandingPage() {
   ]
 
   return (
-    <div className="flex flex-col min-h-screen">
-      {/* Header */}
-      <header className="bg-white border-b sticky top-0 z-50">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center">
-              <Logo />
-            </div>
-            <nav className="hidden md:flex items-center space-x-4">
-              <Link href="#" className="font-poppins text-gray-600 hover:text-australian-green whitespace-nowrap">
-                {t("nav.purpose")}
-              </Link>
-              <Link href="#" className="font-poppins text-gray-600 hover:text-australian-green whitespace-nowrap">
-                {t("nav.howItWorks")}
-              </Link>
-              <Link href="#" className="font-poppins text-gray-600 hover:text-australian-green whitespace-nowrap">
-                {t("nav.pricing")}
-              </Link>
-              <Link href="#" className="font-poppins text-gray-600 hover:text-australian-green whitespace-nowrap">
-                {t("nav.contact")}
-              </Link>
-            </nav>
-            <div className="flex items-center space-x-2">
-              <LanguageToggle />
-              <Button size="sm" className="hidden md:inline-flex cta-button whitespace-nowrap">
-                {t("cta.bookNow")}
-              </Button>
-            </div>
-          </div>
-        </div>
-      </header>
-
+    <>
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-philippine-blue to-philippine-blue/80 text-white">
         <div className="absolute inset-0 opacity-20">
@@ -147,12 +116,16 @@ export default function LandingPage() {
                 {t("hero.description")}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="primary-button whitespace-nowrap">
-                  {t("cta.bookShipment")}
-                </Button>
-                <Button size="lg" variant="outline" className="outline-button whitespace-nowrap">
-                  {t("cta.learnMore")}
-                </Button>
+                <Link href="/pricing">
+                  <Button size="lg" className="primary-button whitespace-nowrap">
+                    {t("cta.bookShipment")}
+                  </Button>
+                </Link>
+                <Link href="/how-it-works">
+                  <Button size="lg" variant="outline" className="outline-button whitespace-nowrap">
+                    {t("cta.learnMore")}
+                  </Button>
+                </Link>
               </div>
             </div>
             <div className="lg:w-1/2 flex justify-center items-center relative z-10">
@@ -240,9 +213,11 @@ export default function LandingPage() {
           <h2 className="section-title text-center text-3xl font-bold mb-8">{t("schedule.title")}</h2>
           <FlightSchedule />
           <div className="text-center mt-8">
-            <Button size="lg" className="primary-button whitespace-nowrap">
-              {t("cta.bookShipment")}
-            </Button>
+            <Link href="/pricing">
+              <Button size="lg" className="primary-button whitespace-nowrap">
+                {t("cta.bookShipment")}
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -270,9 +245,11 @@ export default function LandingPage() {
             ))}
           </div>
           <div className="text-center mt-12">
-            <Button size="lg" className="secondary-button whitespace-nowrap">
-              {t("cta.learnMore")}
-            </Button>
+            <Link href="/how-it-works">
+              <Button size="lg" className="secondary-button whitespace-nowrap">
+                {t("cta.learnMore")}
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -310,79 +287,14 @@ export default function LandingPage() {
           <p className="text-xl mb-8 max-w-2xl mx-auto font-poppins">
             {t("cta.joinCustomers")}
           </p>
-          <Button size="lg" className="primary-button whitespace-nowrap">
-            {t("cta.bookShipment")}
-          </Button>
+          <Link href="/pricing">
+            <Button size="lg" className="primary-button whitespace-nowrap">
+              {t("cta.bookShipment")}
+            </Button>
+          </Link>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div>
-              <Logo variant="light" className="mb-4" />
-              <p className="text-gray-400 font-poppins">
-                {t("footer.tagline")}
-              </p>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">{t("footer.quickLinks")}</h4>
-              <ul className="space-y-2">
-                <li>
-                  <Link href="#" className="text-gray-400 hover:text-white">
-                    {t("footer.home")}
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="text-gray-400 hover:text-white">
-                    {t("nav.purpose")}
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="text-gray-400 hover:text-white">
-                    {t("nav.howItWorks")}
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="text-gray-400 hover:text-white">
-                    {t("nav.pricing")}
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">{t("footer.services")}</h4>
-              <ul className="space-y-2">
-                <li>
-                  <Link href="#" className="text-gray-400 hover:text-white">
-                    {t("footer.airCargo")}
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="text-gray-400 hover:text-white">
-                    {t("footer.tracking")}
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="text-gray-400 hover:text-white">
-                    {t("footer.locations")}
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="text-gray-400 hover:text-white">
-                    {t("footer.prohibited")}
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; {new Date().getFullYear()} ShipLite. {t("footer.rights")}</p>
-          </div>
-        </div>
-      </footer>
-    </div>
+    </>
   )
 }
 

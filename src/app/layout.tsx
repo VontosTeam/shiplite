@@ -3,12 +3,13 @@ import type { Metadata } from "next"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { LanguageProvider } from "@/contexts/language-context"
+import SharedLayout from "@/components/shared-layout"
 
 export const metadata: Metadata = {
   title: "ShipLite - The Smart Way to Send Gifts & Essentials to the Philippines",
   description:
     "Fast & reliable shipping from Australia to the Philippines with affordable air cargo rates and real-time tracking.",
-    generator: 'v0.dev'
+  generator: 'v0.dev'
 }
 
 export default function RootLayout({
@@ -29,7 +30,9 @@ export default function RootLayout({
       <body>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <LanguageProvider>
-            {children}
+            <SharedLayout>
+              {children}
+            </SharedLayout>
           </LanguageProvider>
         </ThemeProvider>
       </body>
