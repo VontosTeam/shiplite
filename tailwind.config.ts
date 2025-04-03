@@ -1,7 +1,6 @@
 import type { Config } from "tailwindcss"
 
 const config = {
-  darkMode: ["class"],
   content: [
     "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
@@ -19,11 +18,6 @@ const config = {
       },
     },
     extend: {
-      fontFamily: {
-        montserrat: ["Montserrat", "sans-serif"],
-        poppins: ["Poppins", "sans-serif"],
-        lato: ["Lato", "sans-serif"],
-      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -59,9 +53,13 @@ const config = {
           foreground: "hsl(var(--card-foreground))",
         },
         // ShipLite brand colors
-        "philippine-blue": "#0033A0",
-        "australian-gold": "#FFCD00",
-        "australian-green": "#00843D",
+        philippineBlue: "#0033A0",
+        australianGold: "#FFCD00",
+        australianGreen: "#00843D",
+      },
+      fontFamily: {
+        montserrat: ["var(--font-montserrat)", "sans-serif"],
+        poppins: ["var(--font-poppins)", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",

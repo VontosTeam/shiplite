@@ -2,131 +2,58 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+  --primary: 221 100% 31%;
+  --primary-foreground: 210 40% 98%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+  --accent: 210 40% 96.1%;
+  --accent-foreground: 222.2 47.4% 11.2%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 222.2 84% 4.9%;
 
-    --radius: 0.5rem;
-  }
+  --radius: 0.5rem;
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-  }
+  --chart-1: 221 100% 31%;
+  --chart-2: 45 100% 50%;
+  --chart-3: 142 76% 26%;
+  --chart-4: 0 0% 50%;
+  --chart-5: 0 0% 30%;
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground font-poppins;
-  }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-montserrat font-bold;
-  }
-  p {
-    @apply font-poppins;
-  }
-  .subheading {
-    @apply font-lato font-light;
-  }
-  .cta-button {
-    @apply bg-australian-green text-white font-montserrat font-bold px-6 py-2.5
-           hover:bg-australian-green/90 hover:shadow-lg hover:scale-[1.02]
-           active:scale-[0.98] transition-all duration-200;
-  }
-  .logo-text {
-    @apply font-montserrat font-bold;
-  }
+* {
+  @apply border-border;
 }
 
-@layer components {
-  .primary-button {
-    @apply bg-philippine-blue text-white font-montserrat font-bold px-6 py-2.5
-           hover:bg-philippine-blue/90 hover:shadow-lg hover:scale-[1.02]
-           active:scale-[0.98] transition-all duration-200 rounded-md;
-  }
+body {
+  @apply bg-background text-foreground font-poppins;
+}
 
-  .secondary-button {
-    @apply bg-philippine-blue text-white font-montserrat font-bold px-6 py-2.5
-           hover:bg-philippine-blue/90 hover:shadow-lg hover:scale-[1.02]
-           active:scale-[0.98] transition-all duration-200 rounded-md;
-  }
-
-  .outline-button {
-    @apply bg-white text-philippine-blue font-montserrat font-bold px-6 py-2.5 rounded-md
-           hover:bg-philippine-blue hover:text-white
-           hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] 
-           transition-all duration-200;
-  }
-
-  .accent-text {
-    @apply text-australian-gold font-montserrat font-bold;
-  }
-
-  .section-title {
-    @apply text-3xl font-montserrat font-bold text-philippine-blue text-center mb-12;
-  }
-
-  .card-hover {
-    @apply transition-all duration-300 hover:shadow-lg hover:border-australian-gold/30;
-  }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-montserrat;
 }
 

@@ -1,45 +1,64 @@
-import type React from "react"
-import type { Metadata } from "next"
+import { Inter, Montserrat } from "next/font/google"
+import { DynamicToaster, DynamicLanguageProvider } from "@/lib/dynamic-imports"
+import { ClientToaster } from "@/components/client-wrappers"
+import { cn } from "@/lib/utils"
 import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
-import { LanguageProvider } from "@/contexts/language-context"
-import SharedLayout from "@/components/shared-layout"
 
-export const metadata: Metadata = {
-  title: "ShipLite - The Smart Way to Send Gifts & Essentials to the Philippines",
-  description:
-    "Fast & reliable shipping from Australia to the Philippines with affordable air cargo rates and real-time tracking.",
-  generator: 'v0.dev'
+const inter = Inter({ 
+  subsets: ["latin"],
+  display: "swap",
+  preload: true,
+  adjustFontFallback: true,
+  fallback: ['system-ui', 'arial'],
+})
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  display: "swap",
+  preload: true,
+  variable: "--font-montserrat",
+  adjustFontFallback: true,
+  fallback: ['system-ui', 'arial'],
+})
+
+export const metadata = {
+  title: "ShipLite",
+  description: "The Smart Way to Send Gifts & Essentials to the Philippines",
+  viewport: "width=device-width, initial-scale=1, maximum-scale=1",
+  themeColor: "#ffffff",
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  },
 }
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
   return (
-    <html lang="en">
+    <html lang="en" className={cn(inter.className, montserrat.variable)}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="/api" />
+        <link rel="preconnect" href="/api" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500&family=Lato:wght@300;400;700&display=swap"
-          rel="stylesheet"
-        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#ffffff" />
       </head>
-      <body>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-          <LanguageProvider>
-            <SharedLayout>
-              {children}
-            </SharedLayout>
-          </LanguageProvider>
-        </ThemeProvider>
+      <body 
+        className="min-h-screen bg-background font-sans antialiased"
+        style={{ colorScheme: 'light' }}
+      >
+        <DynamicLanguageProvider>
+          <div className="relative flex min-h-screen flex-col">
+            <div className="flex-1">{children}</div>
+          </div>
+          <ClientToaster />
+        </DynamicLanguageProvider>
       </body>
     </html>
   )
 }
-
-
-
-import './globals.css'
