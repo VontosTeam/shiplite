@@ -1,21 +1,24 @@
-import dynamic from 'next/dynamic'
-import { type FC, type ReactNode } from 'react'
+"use client"
 
-interface LoadingProps {
-  children?: ReactNode;
+import React from "react"
+import dynamic from "next/dynamic"
+import type { DynamicOptionsLoadingProps } from "next/dynamic"
+
+const Loading = ({ isLoading }: DynamicOptionsLoadingProps) => {
+  if (!isLoading) return null
+  return <div className="animate-pulse">Loading...</div>
 }
 
-const Loading: FC<LoadingProps> = () => (
-  <div className="animate-pulse">Loading...</div>
-)
-
-const ContactFormLoading: FC<LoadingProps> = () => (
-  <div className="animate-pulse space-y-4">
-    <div className="h-10 bg-gray-200 rounded" />
-    <div className="h-10 bg-gray-200 rounded" />
-    <div className="h-32 bg-gray-200 rounded" />
-  </div>
-)
+const ContactFormLoading = ({ isLoading }: DynamicOptionsLoadingProps) => {
+  if (!isLoading) return null
+  return (
+    <div className="animate-pulse space-y-4">
+      <div className="h-10 bg-gray-200 rounded" />
+      <div className="h-10 bg-gray-200 rounded" />
+      <div className="h-32 bg-gray-200 rounded" />
+    </div>
+  )
+}
 
 // UI Components
 export const DynamicToaster = dynamic(
@@ -52,6 +55,6 @@ export const DynamicContactForm = dynamic(
 
 // Context Providers
 export const DynamicLanguageProvider = dynamic(
-  () => import('@/contexts/language-context').then(mod => mod.LanguageProvider),
+  () => import('@/lib/contexts/language-context').then(mod => mod.LanguageProvider),
   { ssr: true }
 ) 
