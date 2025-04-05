@@ -1,4 +1,4 @@
-import { ClientContactForm } from "@/components/client-wrappers"
+import { ClientContactForm } from "@/lib/utils/client-wrappers"
 import ContactInfo from "@/components/contact/contact-info"
 import LocationMap from "@/components/contact/location-map"
 import type { Metadata } from "next"
