@@ -4,7 +4,7 @@ import type React from "react"
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { Box } from "lucide-react"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -32,10 +32,13 @@ export default function LoginPage() {
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-2 text-center">
           <div className="flex justify-center">
-            <div className="flex items-center gap-2">
-              <Box className="h-8 w-8 text-primary" />
-              <span className="text-2xl font-bold text-primary">ShipLite</span>
-            </div>
+            <Image
+              src="/images/logos/shiplite-logo-red.webp"
+              alt="ShipLite Logo"
+              width={150}
+              height={60}
+              priority
+            />
           </div>
           <CardTitle className="text-2xl">Admin Login</CardTitle>
           <CardDescription>Enter your credentials to access the admin dashboard</CardDescription>

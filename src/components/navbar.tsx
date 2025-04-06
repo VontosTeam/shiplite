@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { Menu } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -9,17 +10,19 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 
 // Import the LanguageSwitcher component
 import LanguageSwitcher from "./language-switcher"
+import { useLanguage } from "@/lib/contexts/language-context"
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const { t } = useLanguage()
 
   const navLinks = [
-    { name: "Our Purpose", href: "/our-purpose" },
-    { name: "How It Works", href: "/how-it-works" },
-    { name: "Pricing", href: "/pricing" },
-    { name: "Flights", href: "/flights" },
-    { name: "Track", href: "/tracking" },
-    { name: "Contact", href: "/contact" },
+    { name: t.nav.ourPurpose, href: "/our-purpose" },
+    { name: t.nav.howItWorks, href: "/how-it-works" },
+    { name: t.nav.pricing, href: "/pricing" },
+    { name: t.nav.flights, href: "/flights" },
+    { name: t.nav.track, href: "/tracking" },
+    { name: t.nav.contact, href: "/contact" },
   ]
 
   return (
@@ -27,7 +30,13 @@ export default function Navbar() {
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <div className="flex items-center">
           <Link href="/" className="flex items-center">
-            <img src="/shiplite-logo-red.png" alt="ShipLite Logo" width={100} height={100} />
+            <Image
+              src="/images/logos/shiplite-logo-red.webp"
+              alt="ShipLite Logo"
+              width={100}
+              height={40}
+              priority
+            />
           </Link>
         </div>
 
@@ -51,7 +60,7 @@ export default function Navbar() {
         <div className="hidden lg:flex items-center gap-2">
           <LanguageSwitcher />
           <Link href="/booking">
-            <Button className="bg-[#00843D] text-white hover:bg-[#006C32]">Book a Shipment</Button>
+            <Button className="bg-[#00843D] text-white hover:bg-[#006C32]">{t.common.bookShipment}</Button>
           </Link>
         </div>
 
@@ -66,7 +75,13 @@ export default function Navbar() {
           <SheetContent side="right" className="w-[300px] sm:w-[400px]">
             <nav className="flex flex-col gap-6">
               <Link href="/" className="flex items-center" onClick={() => setIsOpen(false)}>
-                <span className="text-xl font-bold text-[#0033A0]">ShipLite</span>
+                <Image
+                  src="/images/logos/shiplite-logo-red.webp"
+                  alt="ShipLite Logo"
+                  width={100}
+                  height={40}
+                  priority
+                />
               </Link>
               <ul className="flex flex-col space-y-4">
                 {navLinks.map((link) => (
@@ -85,7 +100,7 @@ export default function Navbar() {
                 <LanguageSwitcher />
               </div>
               <Link href="/booking" onClick={() => setIsOpen(false)}>
-                <Button className="bg-[#00843D] text-white hover:bg-[#006C32]">Book a Shipment</Button>
+                <Button className="bg-[#00843D] text-white hover:bg-[#006C32]">{t.common.bookShipment}</Button>
               </Link>
             </nav>
           </SheetContent>

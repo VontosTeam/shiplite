@@ -32,9 +32,9 @@ export function middleware(request: NextRequest) {
     )
   }
 
-  // Add a custom header to indicate if this is an admin route
-  if (request.nextUrl.pathname.startsWith("/admin")) {
-    response.headers.set("x-is-admin", "true")
+  // Set custom header for admin routes
+  if (request.nextUrl.pathname.startsWith('/admin')) {
+    response.headers.set('x-is-admin', 'true')
   }
   
   return response

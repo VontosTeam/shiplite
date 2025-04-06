@@ -1,6 +1,5 @@
 import { Inter, Montserrat } from "next/font/google"
-import { DynamicToaster, DynamicLanguageProvider } from "@/lib/dynamic-imports"
-import { ClientToaster } from "@/components/client-wrappers"
+import { LanguageProvider } from "@/lib/contexts/language-context"
 import { cn } from "@/lib/utils"
 import "./globals.css"
 
@@ -24,13 +23,18 @@ const montserrat = Montserrat({
 export const metadata = {
   title: "ShipLite",
   description: "The Smart Way to Send Gifts & Essentials to the Philippines",
-  viewport: "width=device-width, initial-scale=1, maximum-scale=1",
-  themeColor: "#ffffff",
   icons: {
     icon: '/favicon.ico',
     shortcut: '/favicon.ico',
     apple: '/apple-touch-icon.png',
   },
+}
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  themeColor: "#ffffff",
 }
 
 export default function RootLayout({
@@ -52,12 +56,9 @@ export default function RootLayout({
         className="min-h-screen bg-background font-sans antialiased"
         style={{ colorScheme: 'light' }}
       >
-        <DynamicLanguageProvider>
-          <div className="relative flex min-h-screen flex-col">
-            <div className="flex-1">{children}</div>
-          </div>
-          <ClientToaster />
-        </DynamicLanguageProvider>
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   )

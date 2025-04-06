@@ -8,7 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { useLanguage } from "@/contexts/language-context"
+import { useLanguage } from "@/lib/contexts/language-context"
 
 const languages = [
   { code: "en", name: "English" },
